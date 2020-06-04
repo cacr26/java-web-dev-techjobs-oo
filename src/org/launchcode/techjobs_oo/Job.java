@@ -41,6 +41,41 @@ public class Job {
         Job job = (Job) o;
         return getId() == job.getId();
     }
+    @Override
+    public String toString(){
+        String jobName = "";
+        String employerName = "";
+        String locationName = "";
+        String positionTypeName = "";
+        String coreCompentencyName = "";
+
+        if (this.getName().equals("")) {
+            jobName = "Data not available";
+        } else {
+            jobName = this.getName();
+        }
+        if (this.getEmployer().getValue().equals("")) {
+            employerName = "Data not available";
+        } else {
+            employerName = this.getEmployer().getValue();
+        }
+        if (this.getLocation().getValue().equals("")) {
+            locationName = "Data not available";
+        } else {
+            locationName = this.getLocation().getValue();
+        }
+        if (this.getPositionType().getValue().equals("")) {
+            positionTypeName = "Data not available";
+        } else {
+            positionTypeName = this.getPositionType().getValue();
+        }
+        if (this.getCoreCompetency().getValue().equals("")) {
+            coreCompentencyName = "Data not available";
+        } else {
+            coreCompentencyName = this.getCoreCompetency().getValue();
+        }
+        return "\nID: " + getId() + "\nName: " + jobName + "\nEmployer: " + employerName + "\nLocation: " + locationName + "\nPosition Type: " + positionTypeName + "\nCore Competency: " + coreCompentencyName + "\n";
+    }
 
     @Override
     public int hashCode() {
@@ -93,4 +128,5 @@ public class Job {
     public void setCoreCompetency(CoreCompetency coreCompetency) {
         this.coreCompetency = coreCompetency;
     }
+
 }

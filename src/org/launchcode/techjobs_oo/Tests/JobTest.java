@@ -18,6 +18,7 @@ public class JobTest {
     Job job2;
     Job job3;
     Job job4;
+    Job job5;
 
     @Before
     public void createJobTestObject(){
@@ -25,17 +26,17 @@ public class JobTest {
         job2 = new Job();
         job3 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
         job4 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
-
-
+        job5 = new Job("Product tester", new Employer("ACME"), new Location(""), new PositionType("Quality control"), new CoreCompetency("Persistence"));
     }
 
     @Test
     public void testSettingJobId () {
-    assertEquals(2, job2.getId(), .00001);
+    assertEquals(1 ,job2.getId()-job1.getId(), .0001);
     }
 
     @Test
     public void testJobContructorSetsAllFields(){
+        assertTrue(job3 instanceof Job);
         assertTrue(job3.getName() == "Product tester");
         assertTrue(job3.getEmployer().getValue() == "ACME");
         assertTrue(job3.getLocation().getValue() == "Desert");
@@ -47,4 +48,14 @@ public class JobTest {
     public void testJobsForEquality(){
         assertFalse(job3.equals(job4));
         }
+
+    @Test
+    public void testToString(){
+        assertTrue(job3.toString().startsWith("\n"));
+        assertTrue(job3.toString().endsWith(("\n")));
+    }
+    @Test
+    public void testDataNotAvailable() {
+        assertTrue(job5.toString().contains("Data not available"));
+    }
 }
